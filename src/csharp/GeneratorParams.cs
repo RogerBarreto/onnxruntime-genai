@@ -35,7 +35,7 @@ namespace Microsoft.ML.OnnxRuntimeGenAI
         }
 
         public void SetInputIDs(
-#if NET6_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
+#if NET8_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
         ReadOnlySpan<int> inputIDs,
 #else
         int[] inputIDs,

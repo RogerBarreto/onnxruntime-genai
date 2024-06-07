@@ -31,7 +31,7 @@ namespace Microsoft.ML.OnnxRuntimeGenAI
             Result.VerifySuccess(NativeMethods.OgaGenerator_GenerateNextToken(_generatorHandle));
         }
 
-#if NET6_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
+#if NET8_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
         public ReadOnlySpan<int> GetSequence(ulong index)
 #else
         public int[] GetSequence(ulong index)
@@ -41,7 +41,7 @@ namespace Microsoft.ML.OnnxRuntimeGenAI
             IntPtr sequencePtr = NativeMethods.OgaGenerator_GetSequenceData(_generatorHandle, (UIntPtr)index);
             unsafe
             {
-#if NET6_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
+#if NET8_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
                 return new ReadOnlySpan<int>(sequencePtr.ToPointer(), (int)sequenceLength);
 #else
 
