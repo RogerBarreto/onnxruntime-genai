@@ -2,9 +2,6 @@
 // Licensed under the MIT License.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace Microsoft.ML.OnnxRuntimeGenAI
 {
@@ -35,11 +32,7 @@ namespace Microsoft.ML.OnnxRuntimeGenAI
         }
 
         public void SetInputIDs(
-#if NET8_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
         ReadOnlySpan<int> inputIDs,
-#else
-        int[] inputIDs,
-#endif
         ulong sequenceLength, 
         ulong batchSize)
         {

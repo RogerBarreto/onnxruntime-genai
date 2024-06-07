@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net6.0</TargetFrameworks>
+    <TargetFrameworks>net8.0</TargetFrameworks>
     <IsPackable>false</IsPackable>
     <Platforms>AnyCPU</Platforms>
     <IsTestProject>true</IsTestProject>
@@ -27,14 +27,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="$(NativeBuildOutputDir)\onnxruntime-genai.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Visible>false</Visible>
-    </None>
-    <None Include="$(OnnxruntimeLibDirectory)\onnxruntime.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <Visible>false</Visible>
-    </None>
+
     <None Condition="Exists('$(OnnxruntimeLibDirectory)\onnxruntime_providers_shared.dll')" Include="$(OnnxruntimeLibDirectory)\onnxruntime_providers_shared.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Visible>false</Visible>

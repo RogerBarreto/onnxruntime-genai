@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 using System;
-using System.Runtime.InteropServices;
 
 namespace Microsoft.ML.OnnxRuntimeGenAI
 {
@@ -27,11 +26,7 @@ namespace Microsoft.ML.OnnxRuntimeGenAI
         }
 
         public string Decode(
-#if NET8_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
             ReadOnlySpan<int> sequence
-#else
-            int[] sequence
-#endif      
             )
         {
             IntPtr outStr = IntPtr.Zero;

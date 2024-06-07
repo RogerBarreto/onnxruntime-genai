@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 
 using System;
-using System.Runtime.InteropServices;
-using System.Text;
 
 namespace Microsoft.ML.OnnxRuntimeGenAI
 {
@@ -63,11 +61,7 @@ namespace Microsoft.ML.OnnxRuntimeGenAI
         }
 
         public string Decode(
-#if NET8_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
             ReadOnlySpan<int> sequence
-#else
-            int[] sequence
-#endif   
             )
         {
             IntPtr outStr = IntPtr.Zero;
@@ -94,7 +88,6 @@ namespace Microsoft.ML.OnnxRuntimeGenAI
             Result.VerifySuccess(NativeMethods.OgaCreateTokenizerStream(_tokenizerHandle, out tokenizerStreamHandle));
             return new TokenizerStream(tokenizerStreamHandle);
         }
-
 
         ~Tokenizer()
         {

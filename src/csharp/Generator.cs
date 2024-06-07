@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 
 using System;
-using System.Runtime.InteropServices;
 
 namespace Microsoft.ML.OnnxRuntimeGenAI
 {
@@ -31,27 +30,13 @@ namespace Microsoft.ML.OnnxRuntimeGenAI
             Result.VerifySuccess(NativeMethods.OgaGenerator_GenerateNextToken(_generatorHandle));
         }
 
-#if NET8_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
         public ReadOnlySpan<int> GetSequence(ulong index)
-#else
-        public int[] GetSequence(ulong index)
-#endif
         {
             ulong sequenceLength = NativeMethods.OgaGenerator_GetSequenceCount(_generatorHandle, (UIntPtr)index).ToUInt64();
             IntPtr sequencePtr = NativeMethods.OgaGenerator_GetSequenceData(_generatorHandle, (UIntPtr)index);
             unsafe
             {
-#if NET8_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
                 return new ReadOnlySpan<int>(sequencePtr.ToPointer(), (int)sequenceLength);
-#else
-
-                int[] sequence = new int[sequenceLength];
-                for (int i = 0; i < (int)sequenceLength; i++)
-                {
-                    sequence[i] = Marshal.ReadInt32(sequencePtr, i * sizeof(int));
-                }
-                return sequence;
-#endif
             }
         }
 

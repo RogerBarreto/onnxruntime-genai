@@ -5,10 +5,7 @@ using System;
 using System.IO;
 using Xunit;
 using Xunit.Abstractions;
-using Microsoft.ML.OnnxRuntimeGenAI;
-using System.Collections.Generic;
 using System.Linq;
-using System.Reflection.Emit;
 using System.Runtime.InteropServices;
 
 namespace Microsoft.ML.OnnxRuntimeGenAI.Tests
