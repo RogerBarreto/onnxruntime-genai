@@ -22,7 +22,11 @@ namespace Microsoft.ML.OnnxRuntimeGenAI
 
         public ulong NumSequences { get { return _numSequences; } }
 
+#if NET6_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
         public ReadOnlySpan<int> this[ulong sequenceIndex]
+#else
+        public int[] this[ulong sequenceIndex]
+#endif
         {
             get
             {
@@ -34,7 +38,13 @@ namespace Microsoft.ML.OnnxRuntimeGenAI
                 IntPtr sequencePtr = NativeMethods.OgaSequencesGetSequenceData(_sequencesHandle, (UIntPtr)sequenceIndex);
                 unsafe
                 {
+#if NET6_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
                     return new ReadOnlySpan<int>(sequencePtr.ToPointer(), (int)sequenceLength);
+#else
+                    int[] sequence = new int[sequenceLength];
+                    Marshal.Copy(sequencePtr, sequence, 0, (int)sequenceLength);
+                    return sequence;
+#endif
                 }
             }
         }
