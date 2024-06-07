@@ -63,7 +63,7 @@ namespace Microsoft.ML.OnnxRuntimeGenAI
         }
 
         public string Decode(
-#if NET6_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
+#if NET8_0_OR_GREATER || NETSTANDARD2_1_OR_GREATER
             ReadOnlySpan<int> sequence
 #else
             int[] sequence
