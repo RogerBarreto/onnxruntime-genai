@@ -31,10 +31,7 @@ namespace Microsoft.ML.OnnxRuntimeGenAI
             Result.VerifySuccess(NativeMethods.OgaGeneratorParamsTryGraphCaptureWithMaxBatchSize(_generatorParamsHandle, maxBatchSize));
         }
 
-        public void SetInputIDs(
-        ReadOnlySpan<int> inputIDs,
-        ulong sequenceLength, 
-        ulong batchSize)
+        public void SetInputIDs(ReadOnlySpan<int> inputIDs, ulong sequenceLength, ulong batchSize)
         {
             unsafe
             {

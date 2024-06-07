@@ -25,9 +25,7 @@ namespace Microsoft.ML.OnnxRuntimeGenAI
             return new NamedTensors(namedTensorsHandle);
         }
 
-        public string Decode(
-            ReadOnlySpan<int> sequence
-            )
+        public string Decode(ReadOnlySpan<int> sequence)
         {
             IntPtr outStr = IntPtr.Zero;
             unsafe

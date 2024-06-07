@@ -60,9 +60,7 @@ namespace Microsoft.ML.OnnxRuntimeGenAI
             }
         }
 
-        public string Decode(
-            ReadOnlySpan<int> sequence
-            )
+        public string Decode(ReadOnlySpan<int> sequence)
         {
             IntPtr outStr = IntPtr.Zero;
             unsafe
